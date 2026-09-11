@@ -1,19 +1,68 @@
+/* ==========================================================================
+   1. ПЕРЕМЕННЫЕ, СБРОС СТИЛЕЙ И НАСТРОЙКА ФОНА
+   ========================================================================== */
 :root {
-  --dark: #19191b;
-  --gray: #696871;
-  --purple: #5454d4;
+  /* ЦВЕТА ПО УМОЛЧАНИЮ (До клика — светлая тема на всех страницах) */
+  --dark: #19191b; /* Черные заголовки */
+  --gray: #696871; /* Серый текст и обычные ссылки меню */
+  --purple: #5454d4; /* Фиолетовый для кнопок и ссылок в тексте */
+  --orange: #a739c2; /* Цвет для кнопки «Связь» */
+  --header-bg: rgba(0, 0, 0, 0.75); /* Сохранили твою темную шапку */
+  --header-border: rgba(0, 0, 0, 0.05);
+}
+
+/* 🏠 ГЛАВНАЯ СТРАНИЦА: При клике буквы становятся БЕЛЫМИ, включаются три фото */
+body.bg-active {
+  --dark: #ffffff; /* Весь текст становится белым */
+  --gray: #e2e2e9; /* Светло-серый текст */
+  --purple: #7171e2; /* Светло-фиолетовый для контраста */
+  --orange: #f820ff; /* Ярко-розовый/оранжевый */
+  --header-bg: rgba(0, 0, 0, 0.35); /* Темное стекло для шапки */
+  --header-border: rgba(255, 255, 255, 0.1);
+
+  background-image:
+    url("images/333.jpg"), url("images/444.jpg"), url("images/555.jpg");
+  background-position:
+    center top 0px,
+    center top 500px,
+    center top 1000px;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-color: #000000; /* Твоя черная подложка */
+  background-size:
+    100% auto,
+    100% auto,
+    100% auto;
+}
+
+/* 📞 СТРАНИЦА «СВЯЗЬ»: При клике включается полноэкранная ГИФКА */
+/* Используем псевдоэлемент ::before, чтобы гифка растянулась на ВЕСЬ экран */
+body.connect-page.bg-active::before {
+  content: "";
+  position: fixed; /* Фиксируем заставку на месте при скролле */
+  top: 0;
+  left: 0;
+  width: 100vw; /* На весь экран по ширине */
+  height: 100vh; /* На весь экран по высоте */
+  z-index: -1; /* Прячем под текст */
+
+  /* Твои кастомные настройки фона для связи: */
+  background-image: url("images/clouds.gif");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover; /* Растягивает гифку без щелей на весь экран */
+}
+
+/* Настройки цветов для страницы связи при клике (твои значения сохранены) */
+body.connect-page.bg-active {
+  background-color: #020202; /* Твой кастомный цвет фона */
+
+  /* Твои кастомные цвета текста (буквы остаются светлыми/белыми на черном фоне) */
+  --dark: #ffffff;
+  --gray: #dddddd;
+  --purple: #ffffff;
   --orange: #a739c2;
-}
-
-html {
-  scroll-padding: 100px;
-  scroll-behavior: smooth;
-}
-
-.header_images {
-  max-width: 100%;
-  width: 80px;
-  height: auto;
+  --header-bg: rgba(0, 0, 0, 0.75);
+  --header-border: rgba(0, 0, 0, 0.05);
 }
 
 * {
@@ -22,22 +71,57 @@ html {
   box-sizing: border-box;
 }
 
+html {
+  scroll-padding: 100px;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
 body {
-  font-family: "DM Sans";
+  font-family: "DM Sans", sans-serif;
+  color: var(--dark); /* Автоматически подстраивается под переменные */
+  height: 1770px;
+  background-color: #ffffff;
+  --header-bg: rgba(255, 255, 255, 0.75);
+
+  /* Плавная анимация перехода */
+  transition:
+    background-image 0.4s ease,
+    background-color 0.4s ease,
+    color 0.4s ease;
 }
 
-.header {
-  position: fixed;
-  width: 100%;
-  background: white;
-  z-index: 999;
-  top: 0;
-  padding-block: 30px;
+ul {
+  list-style: none;
 }
 
+a {
+  text-decoration: none;
+}
+
+/* Ограничитель ширины контента */
 [class*="__container"] {
   max-width: 1069px;
   margin-inline: auto;
+  padding-inline: 15px;
+}
+
+/* ==========================================================================
+   2. СТИЛИ ДЛЯ КОМПЬЮТЕРОВ (ОСНОВНЫЕ)
+   ========================================================================== */
+
+/* Полупрозрачная стеклянная шапка */
+.header {
+  position: fixed;
+  width: 100%;
+  background: var(--header-bg);
+  z-index: 999;
+  top: 0;
+  padding-block: 20px;
+  border-bottom: 1px solid var(--header-border);
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease;
 }
 
 .header__nav {
@@ -46,13 +130,16 @@ body {
   align-items: center;
 }
 
+.header__logo {
+  max-width: 100%;
+  width: 80px;
+  height: auto;
+  cursor: pointer;
+}
+
 .header__list {
   display: flex;
   gap: 49px;
-}
-
-ul {
-  list-style: none;
 }
 
 .header__list-link {
@@ -66,37 +153,42 @@ ul {
 .header__list-link.active {
   color: var(--dark);
   border-bottom: 2px solid var(--purple);
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .header__list-link:hover {
   color: var(--dark);
 }
 
-a {
-  text-decoration: none;
-}
-
+/* Кнопки */
 .header__button,
 .hero__button {
   font-weight: 700;
   font-size: 17px;
   letter-spacing: -0.53px;
   color: white;
-  padding: 19px 59px;
+  padding: 16px 45px;
   border-radius: 10px;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
 }
 
 .header__button {
   background: var(--orange);
 }
 
+.hero__button {
+  background: var(--purple);
+}
+
 .header__button:hover,
 .hero__button:hover {
   opacity: 90%;
+  transform: translateY(-2px);
 }
 
+/* Главная секция (Hero) */
 main {
   margin-top: 141px;
 }
@@ -111,16 +203,8 @@ main {
 }
 
 .hero__content {
-  max-width: 423px;
+  max-width: 500px;
   padding-block: 92px;
-}
-.conect__content {
-  padding-block: 92px;
-}
-
-.conect__content {
-  padding-block: 92px;
-  max-width: 900px;
 }
 
 .hero__image {
@@ -133,8 +217,9 @@ main {
   font-weight: 700;
   font-size: 80px;
   letter-spacing: -2.5px;
-  line-height: 77px;
+  line-height: 85px;
   color: var(--dark);
+  transition: color 0.4s ease;
 }
 
 .hero__desc {
@@ -144,6 +229,15 @@ main {
   line-height: 30px;
   color: var(--gray);
   margin-top: 30px;
+  transition: color 0.4s ease;
+}
+
+/* Ссылки внутри текста */
+.hero__text a {
+  color: var(--purple);
+  text-decoration: underline;
+  font-weight: 700;
+  transition: color 0.4s ease;
 }
 
 .hero__buttons {
@@ -152,21 +246,130 @@ main {
   gap: 40px;
 }
 
-.hero__button {
-  background: var(--purple);
+/* ==========================================================================
+   3. МОБИЛЬНЫЕ СТИЛИ (ЭКРАНЫ МЕНЬШЕ 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .header {
+    padding-block: 12px;
+  }
+
+  main {
+    margin-top: 90px;
+  }
+  .image-page main {
+    margin-top: 60px;
+  }
+  .header__nav {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+
+  .header__logo {
+    flex-shrink: 0;
+    width: 60px;
+  }
+
+  .header__list {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-block: 5px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .header__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .header__list-item {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  .header__list-link {
+    white-space: nowrap;
+    display: inline-block;
+  }
+
+  .header__button {
+    flex-shrink: 0;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+  .hero__container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .hero__content {
+    max-width: 100%;
+    padding-block: 20px;
+  }
+
+  .hero__title {
+    font-size: 42px;
+    line-height: 48px;
+  }
+
+  .hero__image {
+    position: relative;
+    top: auto;
+    right: auto;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .hero__buttons {
+    margin-top: 30px;
+  }
+
+  .hero__button {
+    width: 100%;
+    padding: 15px 30px;
+  }
+
+  /* Уменьшаем отступ для мобильного дива, чтобы было красиво */
+  .image-hero {
+    margin-top: 60px;
+  }
 }
 
-.hero__scroll {
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #e7e7e7;
-  border-radius: 100px;
+/* ==========================================================================
+   4. СПЕЦИАЛЬНЫЕ СТИЛИ СТРАНИЦЫ «ИЗОБРАЖЕНИЕ»
+   ========================================================================== */
+.image-page main {
+  margin-top: 81px;
+  width: 100%;
+}
+
+.image-page .image-page__container {
+  max-width: 100% !important;
+  padding-inline: 0 !important;
+  margin: 0;
+  width: 100%;
+}
+
+.image-hero {
+  width: 100%;
+  margin-top: 150px; /* Твой кастомный отступ */
+  padding: 0;
+  overflow: hidden;
 }
 
 .image_about_me {
-  width: 100vw;
-  height: 40vw;
+  width: 100%;
+  height: 35vw; /* Твоя кастомная высота */
+  display: block;
 }

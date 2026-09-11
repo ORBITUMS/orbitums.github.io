@@ -7,26 +7,29 @@
     <link rel="stylesheet" href="/style.css" />
     <title>Hello World!</title>
   </head>
-  <body>
+  <!-- Обязательно добавляем класс connect-page, чтобы текст оставался черным! -->
+  <body style="height: 800px" class="connect-page">
     <header class="header">
       <div class="header__container">
         <nav class="header__nav">
-          <img class="header_images" src="images/favicon.png" alt="" />
+          <!-- Наш любимый логотип-фавикон -->
+          <img class="header__logo" src="images/favicon.png" alt="Логотип" />
           <ul class="header__list">
             <li class="header__list-item">
               <a class="header__list-link" href="/index.html">Дом</a>
             </li>
             <li class="header__list-item">
-              <a class="header__list-link" href="/image.html">Изоброжение</a>
+              <a class="header__list-link" href="/image.html">Изображение</a>
             </li>
             <li class="header__list-item">
-              <a class="header__list-link" href="/">3</a>
+              <a class="header__list-link" href="/emptry.html">Пустой</a>
             </li>
             <li class="header__list-item">
-              <a class="header__list-link" href="/">4</a>
+              <a class="header__list-link" href="/Community.html">Сообщество</a>
             </li>
           </ul>
-          <a class="header__button" href="/connect.html">Связь</a>
+          <!-- Добавили класс active, так как это страница связи -->
+          <a class="header__button active" href="/connect.html">Связь</a>
         </nav>
       </div>
     </header>
@@ -36,19 +39,59 @@
           <div class="conect__content">
             <div class="hero__text">
               <h1 class="hero__title">Связь</h1>
-              <p class="hero__desc">
-                тг : <a href="https://t.me/Xd450">@xd450</a>
-              </p>
-              <p class="hero__desc">
-                мой ютуб :
-                <a href="https://www.youtube.com/@ORBITUMS">@ORBITUMS</a>
-              </p>
-              <p class="hero__desc">мой чото там :</p>
+              <!-- Твои крутые обновленные контакты -->
+              <ul class="hero__contacts">
+                <li class="hero__contact-item">
+                  тг:
+                  <a
+                    href="https://t.me/Xd450"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    >Telegram</a
+                  >
+                </li>
+                <li class="hero__contact-item">
+                  ютуб:
+                  <a
+                    href="https://www.youtube.com/@ORBITUMS"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    >YouTube</a
+                  >
+                </li>
+                <li class="hero__contact-item">
+                  гитхаб:
+                  <a
+                    href="https://github.com/ORBITUMS"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    >GitHub</a
+                  >
+                </li>
+                <li class="hero__contact-item">
+                  тик ток:
+                  <a
+                    href="https://www.tiktok.com/@xd450gs"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    >TikTok</a
+                  >
+                </li>
+              </ul>
             </div>
           </div>
-          <img class="hero__image" src="images/hero-image.png" alt="" />
+          <img class="hero__image" src="" alt="" />
         </div>
       </section>
     </main>
+
+    <!-- Скрипт переключения гифки -->
+    <script>
+      const logo = document.querySelector(".header__logo");
+
+      logo.addEventListener("click", function () {
+        document.body.classList.toggle("bg-active");
+      });
+    </script>
   </body>
 </html>

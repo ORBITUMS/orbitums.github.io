@@ -5,35 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="/style.css" />
-    <title>Hello World!</title>
+    <title>Изображение — Hello World!</title>
   </head>
-  <body>
+  <body class="image-page">
     <header class="header">
       <div class="header__container">
         <nav class="header__nav">
-          <img class="header_images" src="images/favicon.png" alt="" />
+          <img class="header__logo" src="images/favicon.png" alt="Логотип" />
           <ul class="header__list">
             <li class="header__list-item">
               <a class="header__list-link" href="/index.html">Дом</a>
             </li>
             <li class="header__list-item">
-              <a class="header__list-link active" href="/">Изоброжение</a>
+              <a class="header__list-link active" href="/image.html"
+                >Изображение</a
+              >
             </li>
             <li class="header__list-item">
-              <a class="header__list-link" href="/">3</a>
+              <a class="header__list-link" href="/emptry.html">Пустой</a>
             </li>
             <li class="header__list-item">
-              <a class="header__list-link" href="/">4</a>
+              <a class="header__list-link" href="/Community.html">Сообщество</a>
             </li>
           </ul>
           <a class="header__button" href="/connect.html">Связь</a>
         </nav>
       </div>
     </header>
-    <main>
-      <div>
-        <img class="image_about_me" src="/images/Me.png" alt="Me" />
-      </div>
-    </main>
+
+    <!-- ТВОЯ ИДЕЯ: Новый чистый див прямо после навигации -->
+    <div class="image-hero">
+      <img class="image_about_me" src="/images/Me.png" alt="Это я" />
+    </div>
   </body>
 </html>

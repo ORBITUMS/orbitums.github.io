@@ -7,44 +7,47 @@
     <link rel="stylesheet" href="/style.css" />
     <title>Hello World!</title>
   </head>
-  <body>
+  <!-- Обязательно добавляем класс connect-page, чтобы текст оставался черным! -->
+  <body style="height: 800px" class="connect-page">
     <header class="header">
       <div class="header__container">
         <nav class="header__nav">
+          <!-- Наш любимый логотип-фавикон -->
           <img class="header__logo" src="images/favicon.png" alt="Логотип" />
           <ul class="header__list">
             <li class="header__list-item">
-              <a class="header__list-link active" href="/index.html">Дом</a>
+              <a class="header__list-link" href="/index.html">Дом</a>
             </li>
             <li class="header__list-item">
               <a class="header__list-link" href="/image.html">Изображение</a>
             </li>
             <li class="header__list-item">
-              <a class="header__list-link" href="/emptry.html">Пустой</a>
+              <a class="header__list-link active" href="/emptry.html">Пустой</a>
             </li>
             <li class="header__list-item">
               <a class="header__list-link" href="/Community.html">Сообщество</a>
             </li>
           </ul>
-          <a class="header__button" href="/connect.html">Связь</a>
+          <!-- Добавили класс active, так как это страница связи -->
+          <a class="header__button active" href="/connect.html">Связь</a>
         </nav>
       </div>
     </header>
     <main>
       <section class="hero">
         <div class="hero__container">
-          <div class="hero__content">
+          <div class="conect__content">
             <div class="hero__text">
-              <h1 class="hero__title">Этот сайт обо мне</h1>
-              <p class="hero__desc">
-                <!-- Сюда можно добавить любой текст описания -->
-              </p>
+              <h2 class="hero__title">пустой</h2>
+              <p class="hero__desc">а что ты хотел</p>
             </div>
           </div>
           <img class="hero__image" src="" alt="" />
         </div>
       </section>
     </main>
+
+    <!-- Скрипт переключения гифки -->
     <script>
       const logo = document.querySelector(".header__logo");
 
