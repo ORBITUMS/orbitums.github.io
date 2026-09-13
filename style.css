@@ -12,7 +12,8 @@
 }
 
 /* 🏠 ГЛАВНАЯ СТРАНИЦА: При клике буквы становятся БЕЛЫМИ, включаются три фото */
-body.bg-active {
+/* Сеньорское решение: добавили .home-page, чтобы картинки не мигали на странице связи! */
+body.home-page.bg-active {
   --dark: #ffffff; /* Весь текст становится белым */
   --gray: #e2e2e9; /* Светло-серый текст */
   --purple: #7171e2; /* Светло-фиолетовый для контраста */
@@ -22,20 +23,24 @@ body.bg-active {
 
   background-image:
     url("images/333.jpg"), url("images/444.jpg"), url("images/555.jpg");
+
+  /* Позиционируем: 1-я сверху, 2-я по центру экрана, 3-я ниже */
   background-position:
     center top 0px,
-    center top 500px,
+    center center,
     center top 1000px;
+
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-color: #000000; /* Твоя черная подложка */
+
+  /* ТВОЁУТОЧНЕНИЕ: 1-я идет по ширине, 2-я растянута на ВЕСЬ экран (cover), 3-я по ширине */
   background-size:
     100% auto,
-    100% auto,
+    cover,
     100% auto;
 }
 
 /* 📞 СТРАНИЦА «СВЯЗЬ»: При клике включается полноэкранная ГИФКА */
-/* Используем псевдоэлемент ::before, чтобы гифка растянулась на ВЕСЬ экран */
 body.connect-page.bg-active::before {
   content: "";
   position: fixed; /* Фиксируем заставку на месте при скролле */
@@ -340,7 +345,6 @@ main {
     padding: 15px 30px;
   }
 
-  /* Уменьшаем отступ для мобильного дива, чтобы было красиво */
   .image-hero {
     margin-top: 60px;
   }
@@ -363,13 +367,13 @@ main {
 
 .image-hero {
   width: 100%;
-  margin-top: 150px; /* Твой кастомный отступ */
+  margin-top: 150px;
   padding: 0;
   overflow: hidden;
 }
 
 .image_about_me {
   width: 100%;
-  height: 35vw; /* Твоя кастомная высота */
+  height: 35vw;
   display: block;
 }
