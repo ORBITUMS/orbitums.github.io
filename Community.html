@@ -12,7 +12,6 @@
     <header class="header">
       <div class="header__container">
         <nav class="header__nav">
-          <!-- Наш любимый логотип-фавикон -->
           <img class="header__logo" src="images/favicon.png" alt="Логотип" />
           <ul class="header__list">
             <li class="header__list-item">
@@ -28,7 +27,7 @@
             </li>
             <li class="header__list-item">
               <a class="header__list-link active" href="/Community.html"
-                >Сообщество</a
+                >Мои взгляды и сообщество</a
               >
             </li>
           </ul>
@@ -40,23 +39,48 @@
     <main>
       <section class="hero">
         <div class="hero__container">
-          <div class="conect__content">
-            <div class="hero__text">
-              <!-- <h2 class="hero__title"></h2>
-              <p class="hero__desc"></p> -->
-
-              <img src="images/Scherzo.gif" alt="" />
-              <img
-                src="images/cheese.gif"
-                alt=""
-                style="height: 50px; float: right"
-              />
+          <!-- Верхняя часть: Текст слева, Видео справа -->
+          <div class="hero__main-content">
+            <!-- Левая колонка с текстом -->
+            <div class="hero__text-block">
+              <h1 class="hero__title">?</h1>
+              <p class="hero__desc">
+                Проект который не сбудиться в ближайшие 30 лет
+              </p>
             </div>
+
+            <!-- Правая колонка с видео (замени URL на свое видео) -->
+            <div class="hero__video-block">
+              <iframe
+                src="https://www.youtube.com/embed/Yb5ivvcTvRQ"
+                title="YouTube video player"
+                frameborder="0"
+                allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                "
+                allowfullscreen
+              >
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Ниже: Блок с твоими гифками -->
+          <div class="hero__gifs">
+            <img src="images/Scherzo.gif" alt="Scherzo" class="gif-item" />
+            <img
+              src="images/cheese.gif"
+              alt="Cheese"
+              class="gif-item gif-item--small"
+            />
           </div>
         </div>
       </section>
     </main>
-
     <!-- Скрипт переключения гифки -->
     <script>
       const logo = document.querySelector(".header__logo");

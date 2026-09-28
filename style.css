@@ -351,3 +351,82 @@ main {
 body.bg-active .hero__image {
   display: none;
 }
+
+/* Контейнер для текста и видео */
+.hero__main-content {
+  display: flex;
+  gap: 40px; /* Отступ между текстом и видео */
+  align-items: stretch; /* Растягивает видео и текст под одну высоту */
+  margin-bottom: 40px; /* Отступ от видео/текста до гифок снизу */
+}
+
+/* Левая колонка с текстом */
+.hero__text-block {
+  flex: 1; /* Занимает 50% ширины */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Центрирует текст по вертикали относительно видео */
+}
+
+.hero__title {
+  font-size: 4rem; /* Большой жирный заголовок */
+  font-weight: 900;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.hero__desc {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Правая колонка с видео */
+.hero__video-block {
+  flex: 1; /* Занимает вторые 50% ширины */
+  position: relative;
+  min-height: 315px; /* Минимальная высота, чтобы видео не сжалось */
+}
+
+/* Делаем видео адаптивным внутри своего блока */
+.hero__video-block iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px; /* Красивые скругленные углы для видео (по желанию) */
+}
+
+/* Блок с гифками внизу */
+.hero__gifs {
+  display: flex;
+  justify-content: space-between; /* Первая слева, вторая справа */
+  align-items: flex-end; /* Выравнивание по нижнему краю */
+}
+
+.hero__gifs img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Стили для второй маленькой гифки, как у тебя в inline-стилях */
+.gif-item--small {
+  height: 50px !important;
+}
+
+/* Адаптив: на мобилках видео встанет под текст */
+@media (max-width: 768px) {
+  .hero__main-content {
+    flex-direction: column;
+  }
+
+  .hero__video-block {
+    height: 250px; /* Фиксированная высота для мобильных */
+  }
+
+  .hero__title {
+    font-size: 2.5rem;
+  }
+}
