@@ -22,7 +22,7 @@ html {
 body {
   font-family: "DM Sans", sans-serif;
   color: var(--dark);
-  height: 1770px;
+  height: 2700px;
   background-color: #ffffff;
   --header-bg: rgba(255, 255, 255, 0.75);
   transition:
@@ -44,13 +44,13 @@ body.home-page.bg-active {
     url("images/333.jpg"), url("images/444.jpg"), url("images/555.gif");
   background-position:
     center top 0px,
-    center center,
-    center top 1000px;
+    center top 1000px,
+    center top 1900px; /* 3-я — после второй */
   background-repeat: no-repeat;
   background-size:
-    100% auto,
-    cover,
-    100% auto;
+    100% 2000px,
+    100% 1000px,
+    100% 1000px;
 }
 
 body.connect-page.bg-active {
@@ -193,6 +193,14 @@ main {
   transition: color 0.4s ease;
 }
 
+.hero__title2 {
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: -2.5px;
+  line-height: 65px;
+  color: var(--dark);
+  transition: color 0.4s ease;
+}
 .hero__desc {
   font-family: "Mulish", sans-serif;
   font-size: 20px;
@@ -429,4 +437,9 @@ body.bg-active .hero__image {
   .hero__title {
     font-size: 2.5rem;
   }
+}
+
+body.bg-active .hero__image,
+body.bg-active .hero__info {
+  display: none;
 }
