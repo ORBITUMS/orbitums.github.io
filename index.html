@@ -5,10 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="/style.css" />
-    <title>Hello World!</title>
+    <title>★ 人の運命を支配する者 ★ Hello World!</title>
   </head>
-  <!-- На главной странице добавляем класс home-page -->
   <body class="home-page">
+    <!-- Иероглифический хаос на фоне (заменим после примера) -->
+    <div class="kanji-layer" aria-hidden="true">
+      <span class="kanji k1">因果</span>
+      <span class="kanji k2">運命</span>
+      <span class="kanji k3">蝕</span>
+      <span class="kanji k4">神の手</span>
+      <span class="kanji k5">使徒</span>
+      <span class="kanji k6">闇</span>
+      <span class="kanji k7">*%</span>
+      <span class="kanji k8">犠牲</span>
+      <span class="kanji k9">剣</span>
+      <span class="kanji k10">血</span>
+      <span class="kanji k11">復讐</span>
+      <span class="kanji k12">戦</span>
+      <span class="kanji k13">死</span>
+      <span class="kanji k14">夢</span>
+    </div>
+
+    <div class="glint-layer" id="glintLayer" aria-hidden="true"></div>
+
+    <div class="retro-topbar" aria-hidden="true">
+      <div class="retro-topbar__track">
+        <span class="retro-topbar__item">
+          ★ 人の運命を支配する者 ★ WELCOME ★ 神の手 ★ 蝕 ★ 因果律 ★ Добро
+          пожаловать ★ イデア・オブ・イービル ★ 使徒 ★ CONNECT ★
+        </span>
+        <span class="retro-topbar__item">
+          ★ 人の運命を支配する者 ★ WELCOME ★ 神の手 ★ 蝕 ★ 因果律 ★ Добро
+          пожаловать ★ イデア・オブ・イービル ★ 使徒 ★ CONNECT ★
+        </span>
+      </div>
+    </div>
+
     <header class="header">
       <div class="header__container">
         <nav class="header__nav">
@@ -35,53 +67,229 @@
         </nav>
       </div>
     </header>
+
     <main>
       <section class="hero">
         <div class="hero__container">
           <div class="hero__content">
             <div class="hero__text">
-              <h1 class="hero__title">Этот сайт обо мне бро</h1>
+              <h1 class="hero__title">
+                Этот сайт обо мне <span class="blink title-glint">★</span>
+              </h1>
             </div>
           </div>
+
           <img class="hero__image" src="/images/tenor.gif" alt="" />
+
           <div class="hero__info">
-            <h2 class="hero__title">
-              <b
-                ><br /><br /><br /><br />
-                Он был создан 30.08.2026 <br />
-                Здесь можно найти:
-              </b>
+            <h2 class="hero__info-title">
+              Он был создан 30.08.2026 &nbsp;<span class="blink">●</span>
             </h2>
-            <ul>
-              <li class="hero__title2">
-                <p>1) Дом - вкладка где вы сейчас</p>
-              </li>
-              <li class="hero__title2">
-                <p>
-                  2) Умения - это наглядно то, что я умею, или то, о чём можно
-                  со мной поговорить
-                </p>
-              </li>
-              <li class="hero__title2">
-                <p>3) Мои проекты - краткая вкладка о моих проектах</p>
-              </li>
-              <li class="hero__title2">
-                <p>4) Мои взгялды и сообщество</p>
-              </li>
-              <li class="hero__title2">
-                <p>5) Связь - мои соц. сети</p>
-              </li>
-            </ul>
+
+            <!-- Бегущая строка — теперь на всю ширину контейнера, не обрезается -->
+            <div class="retro-marquee">
+              <div class="retro-marquee__track">
+                <span class="retro-marquee__item">◆ ホーム Дом — ты здесь</span>
+                <span class="retro-marquee__item"
+                  >◆ スキル Умения — обо мне</span
+                >
+                <span class="retro-marquee__item"
+                  >◆ プロジェクト Проекты — мои работы</span
+                >
+                <span class="retro-marquee__item"
+                  >◆ 意見 Взгляды — сообщество</span
+                >
+                <span class="retro-marquee__item">◆ 連絡 Связь — соцсети</span>
+                <span class="retro-marquee__item">◆ ホーム Дом — ты здесь</span>
+                <span class="retro-marquee__item"
+                  >◆ スキル Умения — обо мне</span
+                >
+                <span class="retro-marquee__item"
+                  >◆ プロジェクト Проекты — мои работы</span
+                >
+                <span class="retro-marquee__item"
+                  >◆ 意見 Взгляды — сообщество</span
+                >
+                <span class="retro-marquee__item">◆ 連絡 Связь — соцсети</span>
+              </div>
+            </div>
+
+            <div class="hero__info-narrow">
+              <table class="retro-table">
+                <tr>
+                  <td class="retro-table__key">サイト</td>
+                  <td>Сайт обо мне</td>
+                </tr>
+                <tr>
+                  <td class="retro-table__key">開設</td>
+                  <td>30.08.2026</td>
+                </tr>
+                <tr>
+                  <td class="retro-table__key">状態</td>
+                  <td>В работе <span class="blink">●</span></td>
+                </tr>
+              </table>
+
+              <div class="retro-divider" aria-hidden="true">
+                ✦◆✧◆✦◆✧◆✦◆✧◆✦◆✧◆✦◆✧◆✦injpgerfinpgdfkpfngdqgqrsfk
+                ;lrlrmgqrmepgmjrepogjiopregj[ofqlkp[wekfopwekf'opksf'pi904u208521085y1-3-13i4[eqrol]wepfo029e8wuf0c823ucfr23ovk23ok]
+                23lpr]-ol\[';r=e[we[rwe[rwe[\[\23[r=23prweoifdsakjfhknvkhndsvkjsdh2373ty762597624359872y4r8ijeqwo]]]]]]']]
+              </div>
+
+              <div class="retro-blink-bar">
+                <span class="blink">◆ メール → xd450@keemail.com ◆</span>
+                <span class="rotator" title="написать">@</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-    </main>
-    <script>
-      const logo = document.querySelector(".header__logo");
 
+      <!-- ★ LOREM IPSUM на ~500 слов со случайным миганием слов ★ -->
+      <section class="lorem-block">
+        <div class="lorem-block__container">
+          <h2 class="lorem-block__title">◆ LOREM 実験テキスト ◆</h2>
+          <p class="lorem-text" id="loremText">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum. Sed ut
+            perspiciatis unde omnis iste natus error sit voluptatem accusantium
+            doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+            inventore veritatis et quasi architecto beatae vitae dicta sunt
+            explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur
+            aut odit aut fugit, sed quia consequuntur magni dolores eos qui
+            ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
+            dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
+            quia non numquam eius modi tempora incidunt ut labore et dolore
+            magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis
+            nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
+            aliquid ex ea commodi consequatur. Quis autem vel eum iure
+            reprehenderit qui in ea voluptate velit esse quam nihil molestiae
+            consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
+            pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus
+            qui blanditiis praesentium voluptatum deleniti atque corrupti quos
+            dolores et quas molestias excepturi sint occaecati cupiditate non
+            provident, similique sunt in culpa qui officia deserunt mollitia
+            animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
+            est et expedita distinctio. Nam libero tempore, cum soluta nobis est
+            eligendi optio cumque nihil impedit quo minus id quod maxime placeat
+            facere possimus, omnis voluptas assumenda est, omnis dolor
+            repellendus. Temporibus autem quibusdam et aut officiis debitis aut
+            rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint
+            et molestiae non recusandae. Itaque earum rerum hic tenetur a
+            sapiente delectus, ut aut reiciendis voluptatibus maiores alias
+            consequatur aut perferendis doloribus asperiores repellat. Sed ut
+            perspiciatis unde omnis iste natus error sit voluptatem accusantium
+            doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+            inventore veritatis et quasi architecto beatae vitae dicta sunt
+            explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur
+            aut odit aut fugit, sed quia consequuntur magni dolores eos qui
+            ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
+            dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
+            quia non numquam eius modi tempora incidunt ut labore et dolore
+            magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis
+            nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
+            aliquid ex ea commodi consequatur. Quis autem vel eum iure
+            reprehenderit qui in ea voluptate velit esse quam nihil molestiae
+            consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
+            pariatur. At vero eos et accusamus et iusto odio dignissimos ducimus
+            qui blanditiis praesentium voluptatum deleniti atque corrupti quos
+            dolores et quas molestias excepturi sint occaecati cupiditate non
+            provident, similique sunt in culpa qui officia deserunt mollitia
+            animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
+            est et expedita distinctio. Nam libero tempore, cum soluta nobis est
+            eligendi optio cumque nihil impedit quo minus id quod maxime placeat
+            facere possimus, omnis voluptas assumenda est, omnis dolor
+            repellendus. Temporibus autem quibusdam et aut officiis debitis aut
+            rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint
+            et molestiae non recusandae. Itaque earum rerum hic tenetur a
+            sapiente delectus, ut aut reiciendis voluptatibus maiores alias
+            consequatur aut perferendis doloribus asperiores repellat. Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+            officia deserunt mollit anim id est laborum. Sed ut perspiciatis
+            unde omnis iste natus error sit voluptatem accusantium doloremque
+            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
+            veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
+            fugit, sed quia consequuntur magni dolores eos qui ratione
+            voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
+            ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non
+            numquam eius modi tempora incidunt ut labore et dolore magnam
+            aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
+            exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid
+            ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui
+            in ea voluptate velit esse quam nihil molestiae consequatur, vel
+            illum qui dolorem eum fugiat quo voluptas nulla pariatur.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Переключение фона по клику на логотип
+      const logo = document.querySelector(".header__logo");
       logo.addEventListener("click", function () {
         document.body.classList.toggle("bg-active");
       });
+
+      // Случайные блики-искры
+      (function () {
+        const layer = document.getElementById("glintLayer");
+        if (!layer) return;
+        const glyphs = ["✦", "✧", "✩", "✪", "❋", "✺", "★", "☆"];
+        const colors = [
+          "#ff00ff",
+          "#00ffff",
+          "#ffff00",
+          "#ff6600",
+          "#ffffff",
+          "#ff3399",
+        ];
+
+        function spawnGlint() {
+          const g = document.createElement("span");
+          g.className = "glint";
+          g.textContent = glyphs[(Math.random() * glyphs.length) | 0];
+          g.style.left = Math.random() * 100 + "vw";
+          g.style.top = Math.random() * 100 + "vh";
+          g.style.fontSize = 10 + Math.random() * 26 + "px";
+          g.style.color = colors[(Math.random() * colors.length) | 0];
+          g.style.setProperty("--dur", 0.8 + Math.random() * 1.2 + "s");
+          layer.appendChild(g);
+          setTimeout(() => g.remove(), 2600);
+        }
+
+        for (let i = 0; i < 6; i++) setTimeout(spawnGlint, i * 120);
+        setInterval(spawnGlint, 320);
+      })();
+
+      // ★ Случайное мигание слов в lorem ipsum ★
+      (function () {
+        const target = document.getElementById("loremText");
+        if (!target) return;
+        const words = target.textContent.trim().split(/\s+/);
+        const html = words
+          .map((w) => {
+            if (Math.random() < 0.09) {
+              const dur = (0.6 + Math.random() * 1.4).toFixed(2);
+              const delay = (Math.random() * 1.2).toFixed(2);
+              const hue = [300, 180, 60, 120][(Math.random() * 4) | 0];
+              return `<span class="blink-word" style="animation-duration:${dur}s; animation-delay:${delay}s; color:hsl(${hue},100%,60%); text-shadow:0 0 8px hsl(${hue},100%,60%)">${w}</span>`;
+            }
+            return w;
+          })
+          .join(" ");
+        target.innerHTML = html;
+      })();
     </script>
   </body>
 </html>
