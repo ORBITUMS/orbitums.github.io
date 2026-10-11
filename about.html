@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta
+      name="description"
+      content="XD450 — developer and philosopher from Belarus. About me, in a few paragraphs."
+    />
+    <meta name="theme-color" content="#15141d" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="XD450 — About" />
+    <meta
+      property="og:description"
+      content="Developer and philosopher from Belarus. About me, in a few paragraphs."
+    />
+    <meta property="og:image" content="/images/favicon.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="XD450 — About" />
+    <meta
+      name="twitter:description"
+      content="Developer and philosopher from Belarus. About me, in a few paragraphs."
+    />
+    <title>XD450 — About</title>
+    <link rel="icon" href="images/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="router.js" defer></script>
+  </head>
+  <body>
+    <div class="scene" aria-hidden="true">
+      <img class="scene__gif" src="background.gif" alt="" />
+      <div class="scene__grade"></div>
+    </div>
+
+    <main class="page page--about">
+      <section class="about" aria-labelledby="page-title">
+        <div class="about__card" data-reveal>
+          <div class="about__content">
+            <div class="about__nav">
+              <a class="about__back" href="index.html">← home</a>
+              <span class="about__index">01 / about</span>
+            </div>
+
+            <h1 class="about__title" id="page-title">About</h1>
+
+            <div class="about__body">
+              <p>
+                Ever since I was little, I’ve been drawn to serious academic
+                subjects, chess, and books. In school I competed in Olympiads
+                and was one of the top students in many subjects. I graduated
+                with honors with a 9.6/10 and I’m studying at the Minsk State
+                College of Digital Technologies. I still read a lot of books, I
+                always enjoy meeting new people, and welcome to my Site.
+              </p>
+              <p>
+                ( I’ve also competed in chess tournaments — I’m down to play you
+                too, mwahaha. )
+              </p>
+              <p>
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+                quae ab illo inventore veritatis et quasi architecto beatae
+                vitae dicta sunt explicabo.
+              </p>
+              <p>
+                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+                aut fugit, sed quia consequuntur magni dolores eos qui ratione
+                voluptatem sequi nesciunt.
+              </p>
+              <p>
+                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+                consectetur, adipisci velit, sed quia non numquam eius modi
+                tempora incidunt ut labore et dolore magnam aliquam quaerat
+                voluptatem.
+              </p>
+            </div>
+          </div>
+
+          <div class="about__video">
+            <div class="about__video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/AcQ3Di2Gewc"
+                title="YouTube video player"
+                frameborder="0"
+                allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                "
+                allowfullscreen
+              >
+              </iframe>
+            </div>
+          </div>
+
+          <button
+            class="about__scroll-hint"
+            type="button"
+            aria-label="Scroll down"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        const card = document.querySelector(".about__card");
+        if (!card) return;
+
+        const STEP_1_DOWN = 30;
+        const STEP_2_DOWN = 200;
+        const STEP_2_UP = 160;
+        const STEP_1_UP = 20;
+
+        let isExpanded = false;
+        let isVideoVisible = false;
+        let ticking = false;
+
+        function onScroll() {
+          const y = window.scrollY || window.pageYOffset;
+
+          if (!isExpanded && y > STEP_1_DOWN) {
+            isExpanded = true;
+            card.classList.add("is-expanded");
+          } else if (isExpanded && y < STEP_1_UP) {
+            isExpanded = false;
+            card.classList.remove("is-expanded");
+          }
+
+          if (!isVideoVisible && y > STEP_2_DOWN) {
+            isVideoVisible = true;
+            card.classList.add("is-video-visible");
+          } else if (isVideoVisible && y < STEP_2_UP) {
+            isVideoVisible = false;
+            card.classList.remove("is-video-visible");
+          }
+
+          ticking = false;
+        }
+
+        window.addEventListener(
+          "scroll",
+          function () {
+            if (!ticking) {
+              window.requestAnimationFrame(onScroll);
+              ticking = true;
+            }
+          },
+          { passive: true },
+        );
+
+        onScroll();
+      })();
+    </script>
+  </body>
+</html>

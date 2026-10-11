@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta
+      name="description"
+      content="XD450 is a developer and philosopher from Belarus building AI and web products, exploring ideas through code and chess."
+    />
+    <meta name="theme-color" content="#15141d" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="XD450 — Developer & Philosopher" />
+    <meta
+      property="og:description"
+      content="Developer and philosopher from Belarus building AI and web products independently."
+    />
+    <meta property="og:image" content="/images/favicon.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="XD450 — Developer & Philosopher" />
+    <meta
+      name="twitter:description"
+      content="Developer and philosopher from Belarus building AI and web products independently."
+    />
+    <title>XD450 — Developer & Philosopher</title>
+    <link rel="icon" href="images/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="router.js" defer></script>
+  </head>
+  <body>
+    <div class="scene" aria-hidden="true">
+      <img class="scene__gif" src="background.gif" alt="" />
+      <div class="scene__grade"></div>
+    </div>
+
+    <main class="page">
+      <section class="home" aria-labelledby="page-title">
+        <div class="home__card" data-reveal>
+          <div class="home__content">
+            <header class="home__identity">
+              <img
+                class="home__avatar"
+                src="images/favicon.png"
+                width="84"
+                height="84"
+                alt="Avatar"
+              />
+              <div class="home__identity-copy">
+                <p class="home__intro">Hello World, I'm the coder</p>
+                <h1 class="home__title" id="page-title">XD450</h1>
+                <p class="home__role">Developer &amp; Philosopher · Belarus</p>
+              </div>
+            </header>
+
+            <p class="home__copy">
+              <span
+                >I build my own projects, sharpening my skills along the way and
+                helping others grow with me.</span
+              >
+              <span
+                >I read widely, play chess, and I'm always up for a good
+                conversation about ideas.</span
+              >
+              <span>You can find more about me on my GitHub.</span>
+            </p>
+
+            <nav class="home__topics" aria-label="Explore this site">
+              <a class="home__topic-link" href="about.html">about</a>
+              <a class="home__topic-link" href="projects.html">projects</a>
+              <a class="home__topic-link" href="skills.html">skills</a>
+            </nav>
+
+            <div class="home__info">
+              <div class="home__time" aria-label="Current time in Minsk">
+                <span>Minsk</span>
+                <span aria-hidden="true">·</span>
+                <time id="minsk-time" datetime="">--:--</time>
+              </div>
+
+              <nav class="home__socials" aria-label="Social links">
+                <a
+                  class="home__social-link"
+                  href="https://t.me/xd450"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  >telegram</a
+                >
+                <a
+                  class="home__social-link"
+                  href="https://github.com/orbitums"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  >github</a
+                >
+                <a class="home__social-link" href="mailto:orbitumgg@gmail.com"
+                  >email</a
+                >
+                <a class="home__social-link" href="mailto:xd450@keemail.com"
+                  >keemail</a
+                >
+                <a
+                  class="home__social-link"
+                  href="https://www.tiktok.com/@xd450gs"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  >TikTok</a
+                >
+                <a
+                  class="home__social-link"
+                  href="/resume/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  >resume?</a
+                >
+              </nav>
+            </div>
+          </div>
+
+          <div class="home__video">
+            <div class="home__video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/Yb5ivvcTvRQ"
+                title="YouTube video player"
+                frameborder="0"
+                allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                "
+                allowfullscreen
+              >
+              </iframe>
+            </div>
+          </div>
+
+          <button
+            class="home__scroll-hint"
+            type="button"
+            aria-label="Scroll down"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        const el = document.getElementById("minsk-time");
+        if (!el) return;
+
+        function update() {
+          const now = new Date();
+          const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+          const minsk = new Date(utc + 3 * 3600000);
+          const hh = String(minsk.getHours()).padStart(2, "0");
+          const mm = String(minsk.getMinutes()).padStart(2, "0");
+          el.textContent = hh + ":" + mm;
+          el.setAttribute("datetime", minsk.toISOString());
+        }
+
+        update();
+        setInterval(update, 10000);
+      })();
+
+      (function () {
+        const card = document.querySelector(".home__card");
+        if (!card) return;
+
+        const STEP_1_DOWN = 30;
+        const STEP_2_DOWN = 200;
+        const STEP_2_UP = 160;
+        const STEP_1_UP = 20;
+
+        let isExpanded = false;
+        let isVideoVisible = false;
+        let ticking = false;
+
+        function onScroll() {
+          const y = window.scrollY || window.pageYOffset;
+
+          if (!isExpanded && y > STEP_1_DOWN) {
+            isExpanded = true;
+            card.classList.add("is-expanded");
+          } else if (isExpanded && y < STEP_1_UP) {
+            isExpanded = false;
+            card.classList.remove("is-expanded");
+          }
+
+          if (!isVideoVisible && y > STEP_2_DOWN) {
+            isVideoVisible = true;
+            card.classList.add("is-video-visible");
+          } else if (isVideoVisible && y < STEP_2_UP) {
+            isVideoVisible = false;
+            card.classList.remove("is-video-visible");
+          }
+
+          ticking = false;
+        }
+
+        window.addEventListener(
+          "scroll",
+          function () {
+            if (!ticking) {
+              window.requestAnimationFrame(onScroll);
+              ticking = true;
+            }
+          },
+          { passive: true },
+        );
+
+        onScroll();
+      })();
+    </script>
+  </body>
+</html>

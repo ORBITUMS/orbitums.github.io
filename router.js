@@ -1,0 +1,193 @@
+(function () {
+  "use strict";
+
+  let clockInterval = null;
+  let scrollAbort = null;
+
+  function initClock() {
+    const el = document.getElementById("minsk-time");
+    if (clockInterval) {
+      clearInterval(clockInterval);
+      clockInterval = null;
+    }
+    if (!el) return;
+
+    function update() {
+      const now = new Date();
+      const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+      const minsk = new Date(utc + 3 * 3600000);
+      const hh = String(minsk.getHours()).padStart(2, "0");
+      const mm = String(minsk.getMinutes()).padStart(2, "0");
+      el.textContent = hh + ":" + mm;
+      el.setAttribute("datetime", minsk.toISOString());
+    }
+
+    update();
+    clockInterval = setInterval(update, 10000);
+  }
+
+  function initScrollTrigger() {
+    if (scrollAbort) scrollAbort.abort();
+    scrollAbort = new AbortController();
+    const signal = scrollAbort.signal;
+
+    const card = document.querySelector(".home__card, .about__card");
+    if (!card) return;
+
+    const STEP_1_DOWN = 30;
+    const STEP_2_DOWN = 200;
+    const STEP_2_UP = 160;
+    const STEP_1_UP = 20;
+
+    let isExpanded = false;
+    let isVideoVisible = false;
+    let ticking = false;
+
+    function onScroll() {
+      const y = window.scrollY || window.pageYOffset;
+
+      if (!isExpanded && y > STEP_1_DOWN) {
+        isExpanded = true;
+        card.classList.add("is-expanded");
+      } else if (isExpanded && y < STEP_1_UP) {
+        isExpanded = false;
+        card.classList.remove("is-expanded");
+      }
+
+      if (!isVideoVisible && y > STEP_2_DOWN) {
+        isVideoVisible = true;
+        card.classList.add("is-video-visible");
+      } else if (isVideoVisible && y < STEP_2_UP) {
+        isVideoVisible = false;
+        card.classList.remove("is-video-visible");
+      }
+
+      ticking = false;
+    }
+
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (!ticking) {
+          window.requestAnimationFrame(onScroll);
+          ticking = true;
+        }
+      },
+      { passive: true, signal },
+    );
+
+    onScroll();
+  }
+
+  function initPage() {
+    initClock();
+    initScrollTrigger();
+  }
+
+  function isInternalLink(a) {
+    if (!a) return false;
+    if (a.target && a.target !== "" && a.target !== "_self") return false;
+    if (a.hasAttribute("download")) return false;
+
+    const href = a.getAttribute("href");
+    if (!href) return false;
+    if (href.startsWith("#")) return false;
+    if (href.startsWith("mailto:")) return false;
+    if (href.startsWith("tel:")) return false;
+
+    if (href.startsWith("http://") || href.startsWith("https://")) {
+      try {
+        const url = new URL(href);
+        return url.origin === window.location.origin;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  async function navigateTo(url, push) {
+    try {
+      const res = await fetch(url, { cache: "no-cache" });
+      if (!res.ok) throw new Error("fetch failed");
+      const text = await res.text();
+      const doc = new DOMParser().parseFromString(text, "text/html");
+
+      const newMain = doc.querySelector("main");
+      const newTitle = doc.querySelector("title");
+      const currentMain = document.querySelector("main");
+
+      if (!newMain || !currentMain) throw new Error("no main");
+
+      newMain.style.opacity = "0";
+      newMain.style.transition = "opacity 0.28s ease";
+
+      currentMain.style.transition = "opacity 0.24s ease";
+      currentMain.style.opacity = "0";
+      currentMain.style.pointerEvents = "none";
+
+      await new Promise((r) => setTimeout(r, 240));
+
+      currentMain.replaceWith(newMain);
+
+      if (newTitle) document.title = newTitle.textContent;
+
+      const metaKeys = [
+        ["name", "description"],
+        ["property", "og:title"],
+        ["property", "og:description"],
+        ["name", "twitter:title"],
+        ["name", "twitter:description"],
+      ];
+      metaKeys.forEach(([attr, val]) => {
+        const oldMeta = document.querySelector(`meta[${attr}="${val}"]`);
+        const newMeta = doc.querySelector(`meta[${attr}="${val}"]`);
+        if (oldMeta && newMeta) {
+          oldMeta.setAttribute("content", newMeta.getAttribute("content"));
+        }
+      });
+
+      if (push) history.pushState({}, "", url);
+
+      window.scrollTo(0, 0);
+      initPage();
+
+      requestAnimationFrame(() => {
+        newMain.style.opacity = "1";
+        setTimeout(() => {
+          newMain.style.transition = "";
+          newMain.style.opacity = "";
+        }, 320);
+      });
+    } catch (err) {
+      window.location.href = url;
+    }
+  }
+
+  document.addEventListener("click", function (e) {
+    if (e.defaultPrevented) return;
+    if (e.button !== 0) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+    const a = e.target.closest("a");
+    if (!isInternalLink(a)) return;
+
+    const href = a.getAttribute("href");
+    e.preventDefault();
+
+    const url = new URL(href, window.location.href).href;
+    if (url === window.location.href) return;
+    navigateTo(url, true);
+  });
+
+  window.addEventListener("popstate", function () {
+    navigateTo(window.location.href, false);
+  });
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPage);
+  } else {
+    initPage();
+  }
+})();
