@@ -79,9 +79,46 @@
     onScroll();
   }
 
+  function initYouTube() {
+    const homeEl = document.getElementById("yt-player-home");
+    const aboutEl = document.getElementById("yt-player");
+
+    if (typeof YT === "undefined" || !YT.Player) {
+      setTimeout(initYouTube, 100);
+      return;
+    }
+
+    if (homeEl && !homeEl.dataset.ytReady) {
+      homeEl.dataset.ytReady = "1";
+      new YT.Player("yt-player-home", {
+        videoId: "Yb5ivvcTvRQ",
+        playerVars: { rel: 0, modestbranding: 1, playsinline: 1 },
+        events: {
+          onReady: function (event) {
+            event.target.setVolume(25);
+          },
+        },
+      });
+    }
+
+    if (aboutEl && !aboutEl.dataset.ytReady) {
+      aboutEl.dataset.ytReady = "1";
+      new YT.Player("yt-player", {
+        videoId: "AcQ3Di2Gewc",
+        playerVars: { rel: 0, modestbranding: 1, playsinline: 1 },
+        events: {
+          onReady: function (event) {
+            event.target.setVolume(5);
+          },
+        },
+      });
+    }
+  }
+
   function initPage() {
     initClock();
     initScrollTrigger();
+    initYouTube();
   }
 
   function isInternalLink(a) {

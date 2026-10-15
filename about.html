@@ -31,6 +31,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="router.js" defer></script>
   </head>
   <body>
@@ -85,21 +86,7 @@
 
           <div class="about__video">
             <div class="about__video-frame">
-              <iframe
-                src="https://www.youtube.com/embed/AcQ3Di2Gewc"
-                title="YouTube video player"
-                frameborder="0"
-                allow="
-                  accelerometer;
-                  autoplay;
-                  clipboard-write;
-                  encrypted-media;
-                  gyroscope;
-                  picture-in-picture;
-                "
-                allowfullscreen
-              >
-              </iframe>
+              <div id="yt-player"></div>
             </div>
           </div>
 
@@ -125,56 +112,5 @@
         </div>
       </section>
     </main>
-
-    <script>
-      (function () {
-        const card = document.querySelector(".about__card");
-        if (!card) return;
-
-        const STEP_1_DOWN = 30;
-        const STEP_2_DOWN = 200;
-        const STEP_2_UP = 160;
-        const STEP_1_UP = 20;
-
-        let isExpanded = false;
-        let isVideoVisible = false;
-        let ticking = false;
-
-        function onScroll() {
-          const y = window.scrollY || window.pageYOffset;
-
-          if (!isExpanded && y > STEP_1_DOWN) {
-            isExpanded = true;
-            card.classList.add("is-expanded");
-          } else if (isExpanded && y < STEP_1_UP) {
-            isExpanded = false;
-            card.classList.remove("is-expanded");
-          }
-
-          if (!isVideoVisible && y > STEP_2_DOWN) {
-            isVideoVisible = true;
-            card.classList.add("is-video-visible");
-          } else if (isVideoVisible && y < STEP_2_UP) {
-            isVideoVisible = false;
-            card.classList.remove("is-video-visible");
-          }
-
-          ticking = false;
-        }
-
-        window.addEventListener(
-          "scroll",
-          function () {
-            if (!ticking) {
-              window.requestAnimationFrame(onScroll);
-              ticking = true;
-            }
-          },
-          { passive: true },
-        );
-
-        onScroll();
-      })();
-    </script>
   </body>
 </html>
