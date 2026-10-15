@@ -1,19 +1,22 @@
-# Привет! Этот сайт обо мне
+# Hi! This site is about me
 
-Добро пожаловать в репозиторий моего первого веб-проекта, который я постоянно разваиваю! Этот сайт обо мне, созданный с использованием стандартов методологии БЭМ в CSS.
-
----
-
-## 💻 О чём этот сайт?
-
-Этот проект — моя визитная карточка в мире веба, где я рассказываю о себе, делюсь своими социальными сетями и экспериментирую с крутыми интерфейсными фишками.
+Welcome to the repository of my first web project, which I keep building on.
 
 ---
 
-## 🛠 Технологии:
-*   **HTML5** 
-*   **CSS3** 
-*   **JavaScript**
+## 💻 What is this site about?
+
+This project is my business card in the world of the web — a place where I
+introduce myself, share my social links, and experiment with websites.
 
 ---
-*Проект был запущен 30 августа.*
+
+## 🛠 Tech stack
+
+- **HTML5**
+- **CSS3** — following BEM methodology
+- **JavaScript** — vanilla, no frameworks
+
+---
+
+*The project went live on August 30.*
