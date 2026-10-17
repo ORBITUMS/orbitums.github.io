@@ -88,7 +88,6 @@
       return;
     }
 
-    // 1. Главная страница
     if (homeEl && !homeEl.dataset.ytReady) {
       homeEl.dataset.ytReady = "1";
       new YT.Player("yt-player-home", {
@@ -102,11 +101,9 @@
       });
     }
 
-    // 2. Страница About
     if (aboutEl && !aboutEl.dataset.ytReady) {
       aboutEl.dataset.ytReady = "1";
 
-      // Выносим переменные наружу, чтобы они были видны и в onReady, и в onStateChange
       const videoIds = ["AcQ3Di2Gewc", "Gk0JszYHSus", "pogzLhe13FQ"];
       let currentVideoIndex = 0;
       let player;
@@ -119,15 +116,20 @@
             event.target.setVolume(5);
 
             const prevBtn = document.getElementById("prev-video");
+            const randomBtn = document.getElementById("random-video");
             const nextBtn = document.getElementById("next-video");
 
-            if (prevBtn && nextBtn) {
-              // Убираем старые события (чтобы не было дублей)
+            if (prevBtn && nextBtn && randomBtn) {
+              // Убираем старые события, чтобы не было дублей при повторном заходе
               const newPrev = prevBtn.cloneNode(true);
+              const newRandom = randomBtn.cloneNode(true);
               const newNext = nextBtn.cloneNode(true);
+
               prevBtn.replaceWith(newPrev);
+              randomBtn.replaceWith(newRandom);
               nextBtn.replaceWith(newNext);
 
+              // Стрелочка влево
               newPrev.addEventListener("click", (e) => {
                 e.preventDefault();
                 currentVideoIndex =
@@ -135,18 +137,29 @@
                 player.loadVideoById(videoIds[currentVideoIndex]);
               });
 
+              // Стрелочка вправо
               newNext.addEventListener("click", (e) => {
                 e.preventDefault();
                 currentVideoIndex = (currentVideoIndex + 1) % videoIds.length;
                 player.loadVideoById(videoIds[currentVideoIndex]);
               });
+
+              // Кнопка случайного момента
+              newRandom.addEventListener("click", (e) => {
+                e.preventDefault();
+                // Получаем длительность текущего видео в секундах
+                const duration = player.getDuration();
+                if (duration > 0) {
+                  // Генерируем случайное число от 0 до длительности (минус 5 секунд, чтобы не перескочить в самый конец)
+                  const randomTime = Math.random() * Math.max(0, duration - 5);
+                  player.seekTo(randomTime, true); // true = разрешить перемотку по сети
+                }
+              });
             }
           },
-          // ВОТ ТУТ ДОЛЖЕН БЫТЬ onStateChange (на одном уровне с onReady)
           onStateChange: function (event) {
-            // 0 = YT.PlayerState.ENDED (видео закончилось)
             if (event.data === 0) {
-              // Автоматически переключаем на следующее
+              // Автоматически переключаем на следующее видео по окончании
               currentVideoIndex = (currentVideoIndex + 1) % videoIds.length;
               player.loadVideoById(videoIds[currentVideoIndex]);
             }
