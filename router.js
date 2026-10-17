@@ -88,6 +88,7 @@
       return;
     }
 
+    // 1. Главная страница
     if (homeEl && !homeEl.dataset.ytReady) {
       homeEl.dataset.ytReady = "1";
       new YT.Player("yt-player-home", {
@@ -101,14 +102,54 @@
       });
     }
 
+    // 2. Страница About
     if (aboutEl && !aboutEl.dataset.ytReady) {
       aboutEl.dataset.ytReady = "1";
-      new YT.Player("yt-player", {
-        videoId: "AcQ3Di2Gewc",
+
+      // Выносим переменные наружу, чтобы они были видны и в onReady, и в onStateChange
+      const videoIds = ["AcQ3Di2Gewc", "Gk0JszYHSus", "pogzLhe13FQ"];
+      let currentVideoIndex = 0;
+      let player;
+
+      player = new YT.Player("yt-player", {
+        videoId: videoIds[0],
         playerVars: { rel: 0, modestbranding: 1, playsinline: 1 },
         events: {
           onReady: function (event) {
             event.target.setVolume(5);
+
+            const prevBtn = document.getElementById("prev-video");
+            const nextBtn = document.getElementById("next-video");
+
+            if (prevBtn && nextBtn) {
+              // Убираем старые события (чтобы не было дублей)
+              const newPrev = prevBtn.cloneNode(true);
+              const newNext = nextBtn.cloneNode(true);
+              prevBtn.replaceWith(newPrev);
+              nextBtn.replaceWith(newNext);
+
+              newPrev.addEventListener("click", (e) => {
+                e.preventDefault();
+                currentVideoIndex =
+                  (currentVideoIndex - 1 + videoIds.length) % videoIds.length;
+                player.loadVideoById(videoIds[currentVideoIndex]);
+              });
+
+              newNext.addEventListener("click", (e) => {
+                e.preventDefault();
+                currentVideoIndex = (currentVideoIndex + 1) % videoIds.length;
+                player.loadVideoById(videoIds[currentVideoIndex]);
+              });
+            }
+          },
+          // ВОТ ТУТ ДОЛЖЕН БЫТЬ onStateChange (на одном уровне с onReady)
+          onStateChange: function (event) {
+            // 0 = YT.PlayerState.ENDED (видео закончилось)
+            if (event.data === 0) {
+              // Автоматически переключаем на следующее
+              currentVideoIndex = (currentVideoIndex + 1) % videoIds.length;
+              player.loadVideoById(videoIds[currentVideoIndex]);
+            }
           },
         },
       });
@@ -118,7 +159,7 @@
   function initPage() {
     initClock();
     initScrollTrigger();
-    initYouTube();
+    setTimeout(initYouTube, 50);
   }
 
   function isInternalLink(a) {
