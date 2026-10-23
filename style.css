@@ -1173,3 +1173,56 @@ button {
 main {
   transition: opacity 0.28s ease;
 }
+.home__video-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.home__video-controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.home__video-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(21, 20, 29, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #a0a0ac;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.2s ease,
+    background 0.3s ease;
+}
+
+.home__video-btn:hover,
+.home__video-btn:focus-visible {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(21, 20, 29, 0.9);
+  transform: scale(1.05);
+}
+
+.home__video-btn:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 900px) {
+  .home__video-controls {
+    gap: 12px;
+  }
+  .home__video-btn {
+    width: 40px;
+    height: 40px;
+  }
+}

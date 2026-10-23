@@ -88,19 +88,165 @@
       return;
     }
 
+    // --- ГЛАВНАЯ СТРАНИЦА ---
     if (homeEl && !homeEl.dataset.ytReady) {
       homeEl.dataset.ytReady = "1";
-      new YT.Player("yt-player-home", {
-        videoId: "Yb5ivvcTvRQ",
+
+      // 1. СПИСОК ДЛЯ ОБЫЧНОГО РЕЖИМА
+      const normalVideos = ["Yb5ivvcTvRQ", "fBP4qVW-uw8"];
+
+      // 2. СПИСОК ДЛЯ ВЗЛОМАННОГО РЕЖИМА (твои два видео + пустые строки для будущего)
+      const hackedVideos = [
+        "jNQXAC9IVRw",
+        "k1BneeJTDcU",
+        "", // Вставишь потом
+        "", // Вставишь потом
+      ];
+
+      // Фильтруем пустые строки, чтобы плеер не сломался
+      const validHackedVideos = hackedVideos.filter((id) => id.trim() !== "");
+
+      let isHacked = false;
+      let normalIndex = 0;
+      let hackedIndex = 0;
+      let glitchTimeout;
+      let homePlayer;
+
+      homePlayer = new YT.Player("yt-player-home", {
+        videoId: normalVideos[0],
         playerVars: { rel: 0, modestbranding: 1, playsinline: 1 },
         events: {
           onReady: function (event) {
             event.target.setVolume(25);
+
+            const prevBtn = document.getElementById("home-prev-video");
+            const nextBtn = document.getElementById("home-next-video");
+            const avatar = document.querySelector(".home__avatar");
+
+            if (prevBtn && nextBtn) {
+              const newPrev = prevBtn.cloneNode(true);
+              const newNext = nextBtn.cloneNode(true);
+              prevBtn.replaceWith(newPrev);
+              nextBtn.replaceWith(newNext);
+
+              // ЛОГИКА КНОПКИ НАЗАД
+              newPrev.addEventListener("click", (e) => {
+                e.preventDefault();
+                if (isHacked) {
+                  if (validHackedVideos.length === 0) return;
+                  hackedIndex =
+                    (hackedIndex - 1 + validHackedVideos.length) %
+                    validHackedVideos.length;
+                  homePlayer.loadVideoById(validHackedVideos[hackedIndex]);
+                } else {
+                  normalIndex =
+                    (normalIndex - 1 + normalVideos.length) %
+                    normalVideos.length;
+                  homePlayer.loadVideoById(normalVideos[normalIndex]);
+                }
+              });
+
+              // ЛОГИКА КНОПКИ ВПЕРЕД
+              newNext.addEventListener("click", (e) => {
+                e.preventDefault();
+                if (isHacked) {
+                  if (validHackedVideos.length === 0) return;
+                  hackedIndex = (hackedIndex + 1) % validHackedVideos.length;
+                  homePlayer.loadVideoById(validHackedVideos[hackedIndex]);
+                } else {
+                  normalIndex = (normalIndex + 1) % normalVideos.length;
+                  homePlayer.loadVideoById(normalVideos[normalIndex]);
+                }
+              });
+            }
+
+            // --- ПАСХАЛКА ---
+            if (avatar && !avatar.dataset.easterEgg) {
+              avatar.dataset.easterEgg = "1";
+
+              function stopGlitch() {
+                clearTimeout(glitchTimeout);
+                const allBtns = document.querySelectorAll(
+                  ".home__video-btn, .about__video-btn",
+                );
+                allBtns.forEach((btn) => {
+                  if (btn.dataset.originalHtml) {
+                    btn.innerHTML = btn.dataset.originalHtml;
+                  }
+                });
+              }
+
+              function runGlitch() {
+                if (!isHacked) return;
+
+                const allBtns = document.querySelectorAll(
+                  ".home__video-btn, .about__video-btn",
+                );
+                const chars = [
+                  "#",
+                  "$",
+                  "%",
+                  "&",
+                  "*",
+                  "!",
+                  "?",
+                  "@",
+                  "^",
+                  "~",
+                  "<",
+                  ">",
+                  "|",
+                ];
+
+                // 1. Показываем символы
+                allBtns.forEach((btn) => {
+                  if (!btn.dataset.originalHtml) {
+                    btn.dataset.originalHtml = btn.innerHTML;
+                  }
+                  // Убрали изменение цвета, оставили только символы
+                  btn.innerHTML = `<span style="font-family: monospace; font-size: 20px;">${chars[Math.floor(Math.random() * chars.length)]}</span>`;
+                });
+
+                // 2. Держим символы 0.5 секунды и убираем
+                glitchTimeout = setTimeout(() => {
+                  allBtns.forEach((btn) => {
+                    if (btn.dataset.originalHtml) {
+                      btn.innerHTML = btn.dataset.originalHtml;
+                    }
+                  });
+
+                  // 3. Ждем случайное время от 1 до 4 секунд и запускаем снова
+                  if (isHacked) {
+                    const randomWait = 1000 + Math.random() * 3000; // 1000мс до 4000мс
+                    glitchTimeout = setTimeout(runGlitch, randomWait);
+                  }
+                }, 500); // 0.5 секунды
+              }
+
+              avatar.addEventListener("click", () => {
+                isHacked = !isHacked;
+                stopGlitch(); // Сбрасываем предыдущий таймер, если был
+
+                if (isHacked) {
+                  // Включаем взлом
+                  if (validHackedVideos.length > 0) {
+                    hackedIndex = 0;
+                    homePlayer.loadVideoById(validHackedVideos[hackedIndex]);
+                  }
+                  runGlitch();
+                } else {
+                  // Выключаем взлом
+                  normalIndex = 0;
+                  homePlayer.loadVideoById(normalVideos[normalIndex]);
+                }
+              });
+            }
           },
         },
       });
     }
 
+    // --- СТРАНИЦА ABOUT ---
     if (aboutEl && !aboutEl.dataset.ytReady) {
       aboutEl.dataset.ytReady = "1";
 
@@ -120,7 +266,6 @@
             const nextBtn = document.getElementById("next-video");
 
             if (prevBtn && nextBtn && randomBtn) {
-              // Убираем старые события, чтобы не было дублей при повторном заходе
               const newPrev = prevBtn.cloneNode(true);
               const newRandom = randomBtn.cloneNode(true);
               const newNext = nextBtn.cloneNode(true);
@@ -129,7 +274,6 @@
               randomBtn.replaceWith(newRandom);
               nextBtn.replaceWith(newNext);
 
-              // Стрелочка влево
               newPrev.addEventListener("click", (e) => {
                 e.preventDefault();
                 currentVideoIndex =
@@ -137,29 +281,24 @@
                 player.loadVideoById(videoIds[currentVideoIndex]);
               });
 
-              // Стрелочка вправо
               newNext.addEventListener("click", (e) => {
                 e.preventDefault();
                 currentVideoIndex = (currentVideoIndex + 1) % videoIds.length;
                 player.loadVideoById(videoIds[currentVideoIndex]);
               });
 
-              // Кнопка случайного момента
               newRandom.addEventListener("click", (e) => {
                 e.preventDefault();
-                // Получаем длительность текущего видео в секундах
                 const duration = player.getDuration();
                 if (duration > 0) {
-                  // Генерируем случайное число от 0 до длительности (минус 5 секунд, чтобы не перескочить в самый конец)
                   const randomTime = Math.random() * Math.max(0, duration - 5);
-                  player.seekTo(randomTime, true); // true = разрешить перемотку по сети
+                  player.seekTo(randomTime, true);
                 }
               });
             }
           },
           onStateChange: function (event) {
             if (event.data === 0) {
-              // Автоматически переключаем на следующее видео по окончании
               currentVideoIndex = (currentVideoIndex + 1) % videoIds.length;
               player.loadVideoById(videoIds[currentVideoIndex]);
             }
