@@ -96,13 +96,7 @@
       const normalVideos = ["Yb5ivvcTvRQ", "fBP4qVW-uw8"];
 
       // 2. СПИСОК ДЛЯ ВЗЛОМАННОГО РЕЖИМА (твои два видео + пустые строки для будущего)
-      const hackedVideos = [
-        "oJxS-0YcllA",
-        "5CRAvfENaic",
-        "Svr9hga7FOI",
-        "jNQXAC9IVRw",
-        "wN1yRL0x6B8",
-      ];
+      const hackedVideos = ["oJxS-0YcllA", "jNQXAC9IVRw"];
 
       // Фильтруем пустые строки, чтобы плеер не сломался
       const validHackedVideos = hackedVideos.filter((id) => id.trim() !== "");
