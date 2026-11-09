@@ -22,7 +22,7 @@
       name="twitter:description"
       content="Developer and philosopher from Belarus building AI and web products independently."
     />
-    <title>XD450 — Developer & Philosopher</title>
+    <title>XD450 — Developer</title>
     <link rel="icon" href="images/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -172,6 +172,7 @@
 
           <button
             class="home__scroll-hint"
+            id="scroll-hint-btn"
             type="button"
             aria-label="Scroll down"
           >
@@ -259,6 +260,21 @@
         );
 
         onScroll();
+      })();
+
+      (function () {
+        const btn = document.getElementById("scroll-hint-btn");
+        if (!btn) return;
+
+        btn.addEventListener("click", function (e) {
+          e.preventDefault(); // Отменяем стандартное поведение кнопки (если есть)
+
+          // Плавно прокручиваем вниз на высоту одного экрана
+          window.scrollBy({
+            top: window.innerHeight, // Прокрутить ровно на один экран вниз
+            behavior: "smooth", // Включаем плавную анимацию
+          });
+        });
       })();
     </script>
   </body>
