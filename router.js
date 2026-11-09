@@ -77,6 +77,20 @@
     );
 
     onScroll();
+    // Обработчик для кнопки скролла вниз
+    const scrollBtn = document.getElementById("scroll-hint-btn");
+    if (scrollBtn && !scrollBtn.dataset.listener) {
+      scrollBtn.dataset.listener = "1";
+      scrollBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        // Прокручиваем вниз на один экран (для главной)
+        // или до конца (для About, где страница длинная)
+        window.scrollBy({
+          top: window.innerHeight,
+          behavior: "smooth",
+        });
+      });
+    }
   }
 
   function initYouTube() {
@@ -259,7 +273,9 @@
             const prevBtn = document.getElementById("prev-video");
             const randomBtn = document.getElementById("random-video");
             const nextBtn = document.getElementById("next-video");
+            const scrollBtn = document.getElementById("scroll-hint-btn");
 
+            // Обработчик для стрелочек и кнопки "?"
             if (prevBtn && nextBtn && randomBtn) {
               const newPrev = prevBtn.cloneNode(true);
               const newRandom = randomBtn.cloneNode(true);
@@ -289,6 +305,19 @@
                   const randomTime = Math.random() * Math.max(0, duration - 5);
                   player.seekTo(randomTime, true);
                 }
+              });
+            }
+
+            // Обработчик для кнопки скролла вниз
+            if (scrollBtn && !scrollBtn.dataset.listener) {
+              scrollBtn.dataset.listener = "1";
+              scrollBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+                // Прокручиваем в самый низ страницы (на 100vh, так как страница 240vh)
+                window.scrollTo({
+                  top: document.body.scrollHeight, // Конец страницы
+                  behavior: "smooth",
+                });
               });
             }
           },

@@ -172,21 +172,5 @@
         </div>
       </section>
     </main>
-    <script>
-      (function () {
-        const btn = document.getElementById("scroll-hint-btn");
-        if (!btn) return;
-
-        btn.addEventListener("click", function (e) {
-          e.preventDefault(); // Отменяем стандартное поведение кнопки (если есть)
-
-          // Плавно прокручиваем вниз на высоту одного экрана
-          window.scrollBy({
-            top: window.innerHeight, // Прокрутить ровно на один экран вниз
-            behavior: "smooth", // Включаем плавную анимацию
-          });
-        });
-      })();
-    </script>
   </body>
 </html>
