@@ -77,19 +77,26 @@
     );
 
     onScroll();
-    // Обработчик для кнопки скролла вниз
+    // Обработчик для кнопки скролла вниз и для аватарки
     const scrollBtn = document.getElementById("scroll-hint-btn");
+    const avatarScrollBtn = document.getElementById("avatar-scroll-btn");
+
+    function scrollDown(e) {
+      e.preventDefault();
+      window.scrollBy({
+        top: window.innerHeight,
+        behavior: "smooth",
+      });
+    }
+
     if (scrollBtn && !scrollBtn.dataset.listener) {
       scrollBtn.dataset.listener = "1";
-      scrollBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        // Прокручиваем вниз на один экран (для главной)
-        // или до конца (для About, где страница длинная)
-        window.scrollBy({
-          top: window.innerHeight,
-          behavior: "smooth",
-        });
-      });
+      scrollBtn.addEventListener("click", scrollDown);
+    }
+
+    if (avatarScrollBtn && !avatarScrollBtn.dataset.listener) {
+      avatarScrollBtn.dataset.listener = "1";
+      avatarScrollBtn.addEventListener("click", scrollDown);
     }
   }
 
