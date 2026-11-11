@@ -182,6 +182,15 @@ button {
   object-fit: cover;
   flex-shrink: 0;
   filter: grayscale(20%) contrast(1.05);
+  cursor: pointer;
+
+  /* Только плавная прозрачность, без трансформаций, чтобы не было рывков */
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Класс для скрытия */
+.home__avatar.is-swapping {
+  opacity: 0;
 }
 
 .home__identity-copy {

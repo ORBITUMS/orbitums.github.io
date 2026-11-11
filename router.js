@@ -139,6 +139,10 @@
             const nextBtn = document.getElementById("home-next-video");
             const avatar = document.querySelector(".home__avatar");
 
+            // ПРЕДЗАГРУЗКА: Заставляем браузер скачать картинку заранее, чтобы она не тормозила
+            const preloadedAva = new Image();
+            preloadedAva.src = "images/Ava.png";
+
             if (prevBtn && nextBtn) {
               const newPrev = prevBtn.cloneNode(true);
               const newNext = nextBtn.cloneNode(true);
@@ -240,25 +244,36 @@
               }
 
               avatar.addEventListener("click", () => {
+                // Защита от быстрых кликов, чтобы анимации не накладывались
+                if (avatar.classList.contains("is-swapping")) return;
+
                 isHacked = !isHacked;
-                stopGlitch(); // Сбрасываем предыдущий таймер, если был
+                stopGlitch();
 
-                // МЕНЯЕМ КАРТИНКУ АВАТАРКИ
-                if (isHacked) {
-                  avatar.src = "images/Ava.png"; // Включаем картинку взлома
-                } else {
-                  avatar.src = "images/favicon.png"; // Возвращаем обычную
-                }
+                // 1. Плавно скрываем аватарку (за 0.3 секунды)
+                avatar.classList.add("is-swapping");
 
+                // 2. Ждем, пока она скроется
+                setTimeout(() => {
+                  // Меняем картинку (она уже в памяти, так что сменится мгновенно)
+                  avatar.src = isHacked
+                    ? "images/Ava.png"
+                    : "images/favicon.png";
+
+                  // 3. Даем браузеру микро-паузу (50мс) и плавно показываем обратно
+                  setTimeout(() => {
+                    avatar.classList.remove("is-swapping");
+                  }, 50);
+                }, 300); // 300мс = время из CSS transition
+
+                // --- Логика взлома и видео ---
                 if (isHacked) {
-                  // Включаем взлом
                   if (validHackedVideos.length > 0) {
                     hackedIndex = 0;
                     homePlayer.loadVideoById(validHackedVideos[hackedIndex]);
                   }
                   runGlitch();
                 } else {
-                  // Выключаем взлом
                   normalIndex = 0;
                   homePlayer.loadVideoById(normalVideos[normalIndex]);
                 }
