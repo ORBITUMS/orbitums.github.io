@@ -6,6 +6,21 @@
   box-sizing: border-box;
 }
 
+/* Скрываем скроллбар для Chrome, Safari, Edge и Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Скрываем скроллбар для Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* Скрываем скроллбар для старых версий Edge и IE */
+body {
+  -ms-overflow-style: none;
+}
+
 html {
   height: 100%;
 }

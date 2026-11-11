@@ -243,6 +243,13 @@
                 isHacked = !isHacked;
                 stopGlitch(); // Сбрасываем предыдущий таймер, если был
 
+                // МЕНЯЕМ КАРТИНКУ АВАТАРКИ
+                if (isHacked) {
+                  avatar.src = "images/Ava.png"; // Включаем картинку взлома
+                } else {
+                  avatar.src = "images/favicon.png"; // Возвращаем обычную
+                }
+
                 if (isHacked) {
                   // Включаем взлом
                   if (validHackedVideos.length > 0) {
