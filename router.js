@@ -116,10 +116,9 @@
       // 1. СПИСОК ДЛЯ ОБЫЧНОГО РЕЖИМА
       const normalVideos = ["Yb5ivvcTvRQ", "fBP4qVW-uw8"];
 
-      // 2. СПИСОК ДЛЯ ВЗЛОМАННОГО РЕЖИМА (твои два видео + пустые строки для будущего)
-      const hackedVideos = ["oJxS-0YcllA", "m2o97OBOS44", ""];
+      // 2
+      const hackedVideos = ["oJxS-0YcllA", "m2o97OBOS44"];
 
-      // Фильтруем пустые строки, чтобы плеер не сломался
       const validHackedVideos = hackedVideos.filter((id) => id.trim() !== "");
 
       let isHacked = false;
@@ -139,7 +138,6 @@
             const nextBtn = document.getElementById("home-next-video");
             const avatar = document.querySelector(".home__avatar");
 
-            // ПРЕДЗАГРУЗКА: Заставляем браузер скачать картинку заранее, чтобы она не тормозила
             const preloadedAva = new Image();
             preloadedAva.src = "images/Ava.png";
 
@@ -149,7 +147,6 @@
               prevBtn.replaceWith(newPrev);
               nextBtn.replaceWith(newNext);
 
-              // ЛОГИКА КНОПКИ НАЗАД
               newPrev.addEventListener("click", (e) => {
                 e.preventDefault();
                 if (isHacked) {
@@ -166,7 +163,6 @@
                 }
               });
 
-              // ЛОГИКА КНОПКИ ВПЕРЕД
               newNext.addEventListener("click", (e) => {
                 e.preventDefault();
                 if (isHacked) {
@@ -180,7 +176,6 @@
               });
             }
 
-            // --- ПАСХАЛКА ---
             if (avatar && !avatar.dataset.easterEgg) {
               avatar.dataset.easterEgg = "1";
 
@@ -218,16 +213,13 @@
                   "|",
                 ];
 
-                // 1. Показываем символы
                 allBtns.forEach((btn) => {
                   if (!btn.dataset.originalHtml) {
                     btn.dataset.originalHtml = btn.innerHTML;
                   }
-                  // Убрали изменение цвета, оставили только символы
                   btn.innerHTML = `<span style="font-family: monospace; font-size: 20px;">${chars[Math.floor(Math.random() * chars.length)]}</span>`;
                 });
 
-                // 2. Держим символы 0.5 секунды и убираем
                 glitchTimeout = setTimeout(() => {
                   allBtns.forEach((btn) => {
                     if (btn.dataset.originalHtml) {
@@ -235,38 +227,31 @@
                     }
                   });
 
-                  // 3. Ждем случайное время от 1 до 4 секунд и запускаем снова
                   if (isHacked) {
-                    const randomWait = 1000 + Math.random() * 3000; // 1000мс до 4000мс
+                    const randomWait = 1000 + Math.random() * 3000;
                     glitchTimeout = setTimeout(runGlitch, randomWait);
                   }
-                }, 500); // 0.5 секунды
+                }, 500);
               }
 
               avatar.addEventListener("click", () => {
-                // Защита от быстрых кликов, чтобы анимации не накладывались
                 if (avatar.classList.contains("is-swapping")) return;
 
                 isHacked = !isHacked;
                 stopGlitch();
 
-                // 1. Плавно скрываем аватарку (за 0.3 секунды)
                 avatar.classList.add("is-swapping");
 
-                // 2. Ждем, пока она скроется
                 setTimeout(() => {
-                  // Меняем картинку (она уже в памяти, так что сменится мгновенно)
                   avatar.src = isHacked
                     ? "images/Ava.png"
                     : "images/favicon.png";
 
-                  // 3. Даем браузеру микро-паузу (50мс) и плавно показываем обратно
                   setTimeout(() => {
                     avatar.classList.remove("is-swapping");
                   }, 50);
-                }, 300); // 300мс = время из CSS transition
+                }, 300);
 
-                // --- Логика взлома и видео ---
                 if (isHacked) {
                   if (validHackedVideos.length > 0) {
                     hackedIndex = 0;
