@@ -421,6 +421,13 @@
       window.scrollTo(0, 0);
       initPage();
 
+      // 🔑 Применяем сохранённый язык к новому DOM
+      if (typeof window.applyCurrentLang === "function") {
+        window.applyCurrentLang();
+      }
+      // На всякий случай — событие для других слушателей
+      window.dispatchEvent(new Event("route:changed"));
+
       requestAnimationFrame(() => {
         newMain.style.opacity = "1";
         setTimeout(() => {

@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="router.js" defer></script>
+    <script src="lang.js" defer></script>
   </head>
   <body>
     <div class="scene" aria-hidden="true">
@@ -54,33 +55,71 @@
                 alt="Avatar"
               />
               <div class="home__identity-copy">
-                <p class="home__intro">Hello World, I'm the coder</p>
+                <p
+                  class="home__intro"
+                  data-en="Hello World, I'm the coder"
+                  data-ru="Привет, мир, я — кодер"
+                >
+                  Hello World, I'm the coder
+                </p>
                 <h1 class="home__title" id="page-title">XD450</h1>
-                <p class="home__role">Developer &amp; Philosopher? · Belarus</p>
+                <p
+                  class="home__role"
+                  data-en="Developer &amp; Philosopher? · Belarus"
+                  data-ru="Разработчик и олимпиадник · Беларусь"
+                >
+                  Developer &amp; Philosopher? · Belarus
+                </p>
               </div>
             </header>
 
             <p class="home__copy">
               <span
+                data-en="I build my own projects, sharpening my skills along the way and helping others grow with me."
+                data-ru="Я создаю собственные проекты, оттачиваю навыки и помогаю расти другим вместе со мной."
                 >I build my own projects, sharpening my skills along the way and
                 helping others grow with me.</span
               >
               <span
+                data-en="I read widely, play chess, and I'm always up for a good conversation about ideas."
+                data-ru="Я много читаю, играю в шахматы и всегда рад хорошему разговорам о разных идеях."
                 >I read widely, play chess, and I'm always up for a good
                 conversation about ideas.</span
               >
-              <span>You can find more about me on my GitHub.</span>
+              <span
+                data-en="You can find more about me on my GitHub."
+                data-ru="Ты можешь найти больше обо мне на моём GitHub :)"
+                >You can find more about me on my GitHub.</span
+              >
             </p>
 
             <nav class="home__topics" aria-label="Explore this site">
-              <a class="home__topic-link" href="about.html">about</a>
-              <a class="home__topic-link" href="projects.html">projects</a>
-              <a class="home__topic-link" href="skills.html">skills</a>
+              <a
+                class="home__topic-link"
+                href="about.html"
+                data-en="about"
+                data-ru="обо мне"
+                >about</a
+              >
+              <a
+                class="home__topic-link"
+                href="projects.html"
+                data-en="projects"
+                data-ru="проекты"
+                >projects</a
+              >
+              <a
+                class="home__topic-link"
+                href="skills.html"
+                data-en="skills"
+                data-ru="навыки"
+                >skills</a
+              >
             </nav>
 
             <div class="home__info">
               <div class="home__time" aria-label="Current time in Minsk">
-                <span>Minsk</span>
+                <span data-en="Minsk" data-ru="Минск">Minsk</span>
                 <span aria-hidden="true">·</span>
                 <time id="minsk-time" datetime="">--:--</time>
               </div>
@@ -91,6 +130,8 @@
                   href="https://t.me/xd450"
                   target="_blank"
                   rel="noreferrer noopener"
+                  data-en="telegram"
+                  data-ru="телеграм"
                   >telegram</a
                 >
                 <a
@@ -98,12 +139,22 @@
                   href="https://github.com/orbitums"
                   target="_blank"
                   rel="noreferrer noopener"
+                  data-en="github"
+                  data-ru="гитхаб"
                   >github</a
                 >
-                <a class="home__social-link" href="mailto:orbitumgg@gmail.com"
+                <a
+                  class="home__social-link"
+                  href="mailto:orbitumgg@gmail.com"
+                  data-en="gmail"
+                  data-ru="gmail"
                   >gmail</a
                 >
-                <a class="home__social-link" href="mailto:xd450@keemail.com"
+                <a
+                  class="home__social-link"
+                  href="mailto:xd450@keemail.com"
+                  data-en="keemail"
+                  data-ru="keemail"
                   >keemail</a
                 >
                 <a
@@ -111,6 +162,8 @@
                   href="https://www.tiktok.com/@xd450gs"
                   target="_blank"
                   rel="noreferrer noopener"
+                  data-en="TikTok"
+                  data-ru="TikTok"
                   >TikTok</a
                 >
                 <a
@@ -118,6 +171,8 @@
                   href="/resume/"
                   target="_blank"
                   rel="noreferrer noopener"
+                  data-en="resume?"
+                  data-ru="резюме?"
                   >resume?</a
                 >
               </nav>
@@ -135,6 +190,8 @@
                   class="home__video-btn"
                   id="home-prev-video"
                   aria-label="Previous video"
+                  data-en-aria="Previous video"
+                  data-ru-aria="Предыдущее видео"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -153,6 +210,8 @@
                   class="home__video-btn"
                   id="home-next-video"
                   aria-label="Next video"
+                  data-en-aria="Next video"
+                  data-ru-aria="Следующее видео"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -176,6 +235,8 @@
             id="scroll-hint-btn"
             type="button"
             aria-label="Scroll down"
+            data-en-aria="Scroll down"
+            data-ru-aria="Прокрутить вниз"
           >
             <svg
               viewBox="0 0 24 24"
@@ -194,5 +255,14 @@
         </div>
       </section>
     </main>
+
+    <button
+      class="lang-toggle"
+      id="lang-toggle"
+      type="button"
+      aria-label="Switch language"
+    >
+      RU
+    </button>
   </body>
 </html>

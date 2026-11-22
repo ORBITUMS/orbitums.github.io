@@ -32,6 +32,7 @@
     />
     <link rel="stylesheet" href="style.css" />
     <script src="router.js" defer></script>
+    <script src="lang.js" defer></script>
   </head>
   <body>
     <div class="scene" aria-hidden="true">
@@ -43,36 +44,86 @@
       <section class="skills" aria-labelledby="page-title">
         <div class="skills__card" data-reveal>
           <div class="skills__nav">
-            <a class="skills__back" href="index.html">← home</a>
-            <span class="skills__index">03 / skills</span>
+            <a
+              class="skills__back"
+              href="index.html"
+              data-en="← home"
+              data-ru="← главная"
+              >← home</a
+            >
+            <span
+              class="skills__index"
+              data-en="03 / skills"
+              data-ru="03 / навыки"
+              >03 / skills</span
+            >
           </div>
 
-          <h1 class="skills__title" id="page-title">Skills</h1>
+          <h1
+            class="skills__title"
+            id="page-title"
+            data-en="Skills"
+            data-ru="Навыки"
+          >
+            Skills
+          </h1>
 
           <div class="skills__grid">
             <article class="skills__group">
-              <h2 class="skills__group-title">Languages</h2>
+              <h2
+                class="skills__group-title"
+                data-en="Languages"
+                data-ru="Языки программирования"
+              >
+                Languages
+              </h2>
               <p class="skills__list">
                 Go, Python, Java, Kotlin, Rust, JavaScript, Lua, TypeScript
               </p>
             </article>
 
             <article class="skills__group">
-              <h2 class="skills__group-title">Currently Exploring</h2>
-              <p class="skills__list">
+              <h2
+                class="skills__group-title"
+                data-en="Currently Exploring"
+                data-ru="Изучаю сейчас"
+              >
+                Currently Exploring
+              </h2>
+              <p
+                class="skills__list"
+                data-en="Assembly, C, low-level programming, Tor, and a long list of things I still want to learn."
+                data-ru="Ассемблер, C, низкоуровневое программирование, Tor — и длинный список того, что ещё хочу освоить."
+              >
                 Assembly, C, low-level programming, Tor, and a long list of
                 things I still want to learn.
               </p>
             </article>
 
             <article class="skills__group">
-              <h2 class="skills__group-title">Databases &amp; Storage</h2>
+              <h2
+                class="skills__group-title"
+                data-en="Databases &amp; Storage"
+                data-ru="Базы данных и хранение"
+              >
+                Databases &amp; Storage
+              </h2>
               <p class="skills__list">SQLite, PostgreSQL</p>
             </article>
 
             <article class="skills__group">
-              <h2 class="skills__group-title">Tools &amp; Infrastructure</h2>
-              <p class="skills__list">
+              <h2
+                class="skills__group-title"
+                data-en="Tools &amp; Infrastructure"
+                data-ru="Инструменты и инфраструктура"
+              >
+                Tools &amp; Infrastructure
+              </h2>
+              <p
+                class="skills__list"
+                data-en="Git, Docker, Linux, VS Code, Telegram, OpenAI API, Data Science"
+                data-ru="Git, Docker, Linux, VS Code, Telegram, OpenAI API, анализ данных"
+              >
                 Git, Docker, Linux, VS Code, Telegram, OpenAI API, Data Science
               </p>
             </article>
@@ -80,5 +131,14 @@
         </div>
       </section>
     </main>
+
+    <button
+      class="lang-toggle"
+      id="lang-toggle"
+      type="button"
+      aria-label="Switch language"
+    >
+      RU
+    </button>
   </body>
 </html>

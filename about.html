@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="router.js" defer></script>
+    <script src="lang.js" defer></script>
   </head>
   <body>
     <div class="scene" aria-hidden="true">
@@ -45,14 +46,35 @@
         <div class="about__card" data-reveal>
           <div class="about__content">
             <div class="about__nav">
-              <a class="about__back" href="index.html">← home</a>
-              <span class="about__index">01 / about</span>
+              <a
+                class="about__back"
+                href="index.html"
+                data-en="← home"
+                data-ru="← главная"
+                >← home</a
+              >
+              <span
+                class="about__index"
+                data-en="01 / about"
+                data-ru="01 / обо мне"
+                >01 / about</span
+              >
             </div>
 
-            <h1 class="about__title" id="page-title">About</h1>
+            <h1
+              class="about__title"
+              id="page-title"
+              data-en="About"
+              data-ru="Обо мне"
+            >
+              About
+            </h1>
 
             <div class="about__body">
-              <p>
+              <p
+                data-en="Ever since I was little, I've been drawn to serious academic subjects, chess, and books. In school I competed in Olympiads and was one of the top students in many subjects. I graduated with honors with a 9.6/10 and I'm studying at the Minsk State College of Digital Technologies. I still read a lot of books, I always enjoy meeting new people, and welcome to my Site."
+                data-ru="С детства меня тянуло к серьёзным наукам, шахматам и книгам. В школе участвовал в олимпиадах и был одним из лучших по многим предметам. Окончил школу с (9.6/10) и учусь в Минском государственном колледже цифровых технологий. До сих пор много читаю, всегда рад новым знакомствам — добро пожаловать на мой сайт."
+              >
                 Ever since I was little, I’ve been drawn to serious academic
                 subjects, chess, and books. In school I competed in Olympiads
                 and was one of the top students in many subjects. I graduated
@@ -60,22 +82,34 @@
                 College of Digital Technologies. I still read a lot of books, I
                 always enjoy meeting new people, and welcome to my Site.
               </p>
-              <p>
+              <p
+                data-en="( I've also competed in chess tournaments — I'm down to play you too, mwahaha. )"
+                data-ru="( Ещё я участвовал в шахматных турнирах — готов сыграть и с тобой тоже, мухехе. )"
+              >
                 ( I’ve also competed in chess tournaments — I’m down to play you
                 too, mwahaha. )
               </p>
-              <p>
+              <p
+                data-en="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+                data-ru="Столько мног оещё можно здесь написать... где же ты прекрасное далёко? ( если не нравяться понедельники, работай без выходных :) )"
+              >
                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                 accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
                 quae ab illo inventore veritatis et quasi architecto beatae
                 vitae dicta sunt explicabo.
               </p>
-              <p>
+              <p
+                data-en="Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+                data-ru="Сейчас работаю над своими проектами, и изучаю всё больше нового в очень разных сферах. Ни одна птица не боится того, что ветка может сломаться, так как надеется не на ветку, а на свои крылья."
+              >
                 Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
                 aut fugit, sed quia consequuntur magni dolores eos qui ratione
                 voluptatem sequi nesciunt.
               </p>
-              <p>
+              <p
+                data-en="Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+                data-ru="Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+              >
                 Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
                 consectetur, adipisci velit, sed quia non numquam eius modi
                 tempora incidunt ut labore et dolore magnam aliquam quaerat
@@ -110,7 +144,6 @@
                   </svg>
                 </button>
 
-                <!-- НОВАЯ КНОПКА -->
                 <button
                   class="about__video-btn"
                   id="random-video"
@@ -172,5 +205,14 @@
         </div>
       </section>
     </main>
+
+    <button
+      class="lang-toggle"
+      id="lang-toggle"
+      type="button"
+      aria-label="Switch language"
+    >
+      RU
+    </button>
   </body>
 </html>

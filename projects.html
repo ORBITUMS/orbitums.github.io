@@ -33,6 +33,7 @@
 
     <link rel="stylesheet" href="style.css" />
     <script src="router.js" defer></script>
+    <script src="lang.js" defer></script>
   </head>
   <body>
     <div class="scene" aria-hidden="true">
@@ -44,11 +45,29 @@
       <section class="projects" aria-labelledby="page-title">
         <div class="projects__card" data-reveal>
           <div class="projects__nav">
-            <a class="projects__back" href="index.html">← home</a>
-            <span class="projects__index">02 / projects</span>
+            <a
+              class="projects__back"
+              href="index.html"
+              data-en="← home"
+              data-ru="← главная"
+              >← home</a
+            >
+            <span
+              class="projects__index"
+              data-en="02 / projects"
+              data-ru="02 / проекты"
+              >02 / projects</span
+            >
           </div>
 
-          <h1 class="projects__title" id="page-title">Projects</h1>
+          <h1
+            class="projects__title"
+            id="page-title"
+            data-en="Projects"
+            data-ru="Проекты"
+          >
+            Projects
+          </h1>
 
           <ol class="projects__list">
             <li class="projects__item">
@@ -61,12 +80,23 @@
                       href="https://github.com/ORBITUMS/BookingBot"
                       target="_blank"
                       rel="noreferrer noopener"
+                      data-en="Booking Bot ↗"
+                      data-ru="Бот бронирования ↗"
                       >Booking Bot ↗</a
                     >
                   </h2>
-                  <span class="projects__role">Creator &amp; CTO</span>
+                  <span
+                    class="projects__role"
+                    data-en="Creator &amp; CTO"
+                    data-ru="Создатель и CTO"
+                    >Creator &amp; CTO</span
+                  >
                 </div>
-                <p class="projects__desc">
+                <p
+                  class="projects__desc"
+                  data-en="Booking SaaS Bot. Telegram. PostgreSQL."
+                  data-ru="SaaS-бот для бронирования. Telegram. PostgreSQL."
+                >
                   Booking SaaS Bot. Telegram. PostgreSQL.
                 </p>
                 <p class="projects__stack">Java · Maven · PostgreSQL</p>
@@ -84,9 +114,18 @@
                     rel="noreferrer noopener"
                     >MBD ↗</a
                   >
-                  <span class="projects__role">Creator &amp; CTO</span>
+                  <span
+                    class="projects__role"
+                    data-en="Creator &amp; CTO"
+                    data-ru="Создатель и CTO"
+                    >Creator &amp; CTO</span
+                  >
                 </div>
-                <p class="projects__desc">
+                <p
+                  class="projects__desc"
+                  data-en="A playground for learning Kotlin. Have fun messing around here."
+                  data-ru="Песочница для изучения Kotlin. Развлекайся и экспериментируй."
+                >
                   A playground for learning Kotlin. Have fun messing around
                   here.
                 </p>
@@ -107,9 +146,18 @@
                       >Blox ↗</a
                     >
                   </h2>
-                  <span class="projects__role">Creator</span>
+                  <span
+                    class="projects__role"
+                    data-en="Creator"
+                    data-ru="Создатель"
+                    >Creator</span
+                  >
                 </div>
-                <p class="projects__desc">
+                <p
+                  class="projects__desc"
+                  data-en="A fast-paced block puzzle game inspired by Block Blast. Drag, drop, and clear lines to beat your high score."
+                  data-ru="Динамичная головоломка с блоками в духе Block Blast. Перетаскивай, сбрасывай и очищай линии, чтобы побить свой рекорд."
+                >
                   A fast-paced block puzzle game inspired by Block Blast. Drag,
                   drop, and clear lines to beat your high score.
                 </p>
@@ -126,9 +174,16 @@
                     href="#"
                     target="_blank"
                     rel="noreferrer noopener"
+                    data-en="My team ↗"
+                    data-ru="Моя команда ↗"
                     >My team ↗</a
                   >
-                  <span class="projects__role">Founder</span>
+                  <span
+                    class="projects__role"
+                    data-en="Founder"
+                    data-ru="Основатель"
+                    >Founder</span
+                  >
                 </div>
                 <p class="projects__desc">
                   Excepteur sint occaecat cupidatat non proident, sunt in culpa
@@ -148,10 +203,17 @@
                       href="#"
                       target="_blank"
                       rel="noreferrer noopener"
+                      data-en="Prototype 5 ↗"
+                      data-ru="Прототип 5 ↗"
                       >Prototype 5 ↗</a
                     >
                   </h2>
-                  <span class="projects__role">Contributor</span>
+                  <span
+                    class="projects__role"
+                    data-en="Contributor"
+                    data-ru="Контрибьютор"
+                    >Contributor</span
+                  >
                 </div>
                 <p class="projects__desc">
                   Sed ut perspiciatis unde omnis iste natus error sit voluptatem
@@ -165,8 +227,19 @@
               <span class="projects__num">06</span>
               <div class="projects__body">
                 <div class="projects__head">
-                  <h2 class="projects__name">Prototype 6</h2>
-                  <span class="projects__role">Creator</span>
+                  <h2
+                    class="projects__name"
+                    data-en="Prototype 6"
+                    data-ru="Прототип 6"
+                  >
+                    Prototype 6
+                  </h2>
+                  <span
+                    class="projects__role"
+                    data-en="Creator"
+                    data-ru="Создатель"
+                    >Creator</span
+                  >
                 </div>
                 <p class="projects__desc">
                   Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
@@ -186,10 +259,17 @@
                       href="#"
                       target="_blank"
                       rel="noreferrer noopener"
+                      data-en="Prototype 7 ↗"
+                      data-ru="Прототип 7 ↗"
                       >Prototype 7 ↗</a
                     >
                   </h2>
-                  <span class="projects__role">Maintainer</span>
+                  <span
+                    class="projects__role"
+                    data-en="Maintainer"
+                    data-ru="Мейнтейнер"
+                    >Maintainer</span
+                  >
                 </div>
                 <p class="projects__desc">
                   At vero eos et accusamus et iusto odio dignissimos ducimus qui
@@ -210,18 +290,42 @@
                     rel="noreferrer noopener"
                     >Scratchbox ↗</a
                   >
-                  <span class="projects__role">Creator</span>
+                  <span
+                    class="projects__role"
+                    data-en="Creator"
+                    data-ru="Создатель"
+                    >Creator</span
+                  >
                 </div>
-                <p class="projects__desc">
+                <p
+                  class="projects__desc"
+                  data-en="There are a lot of different programming languages here. I wrote everything without AI—just learning new things."
+                  data-ru="Здесь много разных языков программирования. Всё написано без ИИ — просто чтобы учиться новому."
+                >
                   There are a lot of different programming languages here. I
                   wrote everything without AI—just learning new things.
                 </p>
-                <p class="projects__stack">Multi-language stack</p>
+                <p
+                  class="projects__stack"
+                  data-en="Multi-language stack"
+                  data-ru="Мультиязычный стек"
+                >
+                  Multi-language stack
+                </p>
               </div>
             </li>
           </ol>
         </div>
       </section>
     </main>
+
+    <button
+      class="lang-toggle"
+      id="lang-toggle"
+      type="button"
+      aria-label="Switch language"
+    >
+      RU
+    </button>
   </body>
 </html>
