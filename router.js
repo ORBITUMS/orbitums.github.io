@@ -273,7 +273,13 @@
     if (aboutEl && !aboutEl.dataset.ytReady) {
       aboutEl.dataset.ytReady = "1";
 
-      const videoIds = ["AcQ3Di2Gewc", "Gk0JszYHSus", "pogzLhe13FQ"];
+      const videoIds = [
+        "AcQ3Di2Gewc",
+        "bs6ozNR8ZaU",
+        "Gk0JszYHSus",
+        "Rgfy-cSmgzY",
+        "pogzLhe13FQ",
+      ];
       let currentVideoIndex = 0;
       let player;
 
